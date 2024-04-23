@@ -24,6 +24,14 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.options('/test-cors', cors(corsOptions), (req, res) => {
+  res.status(200).send('CORS enabled');
+});
+
+app.get('/test-cors', cors(corsOptions), (req, res) => {
+  res.status(200).send('CORS enabled');
+});
+
 // app.get("/", (req, res) => {
 //   res.send("API is running");
 // });
