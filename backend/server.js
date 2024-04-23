@@ -2,6 +2,7 @@ import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import colors from "colors";
+import cors from "cors";
 import connectDB from "./config/db.js";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 import productRoutes from "./routes/productRoutes.js";
@@ -15,6 +16,13 @@ connectDB();
 
 const app = express();
 app.use(express.json()); // body parsing
+
+const corsOptions = {
+  origin: 'https://rshopstore.vercel.app',
+  credentials: true // if you're using cookies or sessions
+};
+
+app.use(cors(corsOptions));
 
 // app.get("/", (req, res) => {
 //   res.send("API is running");
